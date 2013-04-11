@@ -12,8 +12,8 @@ import sys
 import networkx as nx
 from collections import defaultdict
 
-if len(sys.argv) < 3:
-    print "usage: %s num_vertices [v1,v2...]"%(sys.argv[0])
+if len(sys.argv) != 2:
+    print "usage: echo \"v1 v2\nv1 v3\n...\" | %s num_vertices"%(sys.argv[0])
 
 def simple_cycles(G):
     def _unblock(thisnode):
@@ -73,9 +73,9 @@ def simple_cycles(G):
 
 G = nx.DiGraph()
 
-for edge in sys.argv[2:]:
-    v1,v2 = edge.split(',', 1)
-    G.add_edge(v1,v2)
+for edge in sys.stdin.readlines():
+    v1,v2 = edge.split(' ', 1)
+    G.add_edge(v1.strip(),v2.strip())
 
 for c in simple_cycles(G):
     print " ".join(c[:-1])
