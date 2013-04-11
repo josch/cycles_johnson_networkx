@@ -17,8 +17,8 @@ Usage
 
     echo "0 1\n0 2\n1 0\n1 3\n2 0\n3 0\n3 1\n3 2" | python cycles.py 4
 
-First argument is the number of vertices. Subsequent arguments are ordered
-pairs of comma separated vertices that make up the directed edges of the
+First argument is the number of vertices. Ordered pairs of space separated
+vertices are given via standard input and make up the directed edges of the
 graph.
 
 DOT file input
@@ -34,7 +34,7 @@ vertices as well as the edge list expected on standard input.
         sed -n -e '/^\s*[0-9]\+;$/p' graph.dot | wc -l
         sed -n -e 's/^\s*\([0-9]\) -> \([0-9]\);$/\1 \2/p' graph.dot
 
-The above lines works on DOT files like the following:
+The above lines work on DOT files like the following:
 
     digraph G {
       0;
